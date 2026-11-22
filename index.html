@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#bfe0ff">
+<title>Blue World For You 💙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fredoka:wght@500;600&family=Nunito:wght@500;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="clouds" aria-hidden="true">
+  <i class="cloud" style="--w:180px;top:8%;left:-4%" data-d="14"></i>
+  <i class="cloud" style="--w:130px;top:22%;right:-3%" data-d="26"></i>
+  <i class="cloud" style="--w:220px;top:58%;left:-8%" data-d="18"></i>
+  <i class="cloud" style="--w:150px;top:78%;right:-5%" data-d="30"></i>
+</div>
+
+<section id="loading" class="screen active" aria-label="Memuat">
+  <canvas id="heartCanvas"></canvas>
+  <p id="loadText">Mempersiapkan sesuatu yang spesial untuk seseorang yang spesial...</p>
+  <div class="bar"><i id="barFill"></i></div><small id="pct">0%</small>
+</section>
+
+<section id="password" class="screen" aria-label="Password">
+  <div class="pcard" id="pcard">
+    <div class="lock" id="lock">🔒</div>
+    <h1>Pintu Rahasia</h1>
+    <p class="sub">Ada hadiah kecil di baliknya. Masukkan kata sandinya, ya!</p>
+    <div class="pwrow">
+      <input id="pw" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="contoh: 12 mei" aria-label="Password">
+      <button id="eye" type="button" aria-label="Lihat password">👁️</button>
+    </div>
+    <small class="fmt">Format: tanggal, spasi, nama bulan (huruf kecil)</small>
+    <p id="pmsg" role="status"></p>
+    <button id="pgo" class="btn" type="button">Buka pintunya 💙</button>
+    <div class="clue"><span class="sp s1">✦</span><span class="sp s2">✧</span>
+      <b>Petunjuk kecil buat kamu...</b>
+      <span class="secret">Tanggal dan bulan lahir seseorang yang sedang bikin website ini khusus buat kamu. 🤍</span>
+    </div>
+  </div>
+</section>
+
+<main id="app" hidden>
+  <header class="top">
+    <button id="menuBtn" aria-label="Menu">☰</button>
+    <span id="pageName"></span>
+    <div class="audio">
+      <button id="musicBtn" aria-label="Putar atau hentikan musik">🎵</button>
+      <button id="muteBtn" aria-label="Bisukan">🔊</button>
+      <input id="vol" type="range" min="0" max="100" value="50" aria-label="Volume">
+    </div>
+  </header>
+
+  <section class="page" data-name="Beranda"><div class="wrap center">
+    <svg class="mascot" viewBox="0 0 200 140" aria-hidden="true"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d9ecff"/></linearGradient></defs>
+      <path d="M45 118a30 30 0 0 1 2-60 40 40 0 0 1 76-8 32 32 0 0 1 30 68z" fill="url(#cg)" stroke="#9fcdfb" stroke-width="3"/>
+      <circle cx="78" cy="88" r="5" fill="#1f3b63"/><circle cx="118" cy="88" r="5" fill="#1f3b63"/>
+      <ellipse cx="66" cy="100" rx="8" ry="5" fill="#ffc6d9" opacity=".8"/><ellipse cx="130" cy="100" rx="8" ry="5" fill="#ffc6d9" opacity=".8"/>
+      <path d="M90 98q8 9 16 0" stroke="#1f3b63" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path class="mh" d="M148 30c-6-12-24-4-14 8l14 12 14-12c10-12-8-20-14-8z" fill="#8ec9ff"/></svg>
+    <h1 class="hello">HEYYYY, KAMUUU! 💙</h1>
+    <p class="lead">Selamat yaaa, kamu berhasil mengikuti penampilan tari di acara Hari Guru sekolah kita!</p>
+    <p>Website kecil ini aku buat khusus buat kamu, karena ada seseorang yang menurut aku pantas mendapatkan banyak apresiasi hari ini.</p>
+    <button class="btn big" data-next>Buka kejutan kecilnya →</button>
+  </div></section>
+
+  <section class="page" data-name="Ucapan"><div class="wrap">
+    <h2>Untuk kamu, penari kebanggaanku 💃</h2>
+    <div class="card" id="wishBox"></div>
+    <button class="ghost" id="wishSkip">Lewati animasi ✨</button>
+  </div></section>
+
+  <section class="page" data-name="Galeri"><div class="wrap wide">
+    <h2>Sedikit koleksi tentang seseorang yang spesial 💙</h2>
+    <p class="hint">Ketuk foto untuk memperbesar</p>
+    <div class="grid" id="grid"></div>
+  </div></section>
+
+  <section class="page" data-name="Mini Games"><div class="wrap">
+    <h2>Main dulu, yuk! 🎮</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-t="0">💙 Tangkap Hati</button>
+      <button class="tab" data-t="1">🧠 Kuis</button>
+      <button class="tab" data-t="2">💌 Amplop</button>
+    </div>
+    <div class="panel on" id="g0">
+      <div class="hud"><span>Skor <b id="cScore">0</b></span><span>⏱ <b id="cTime">30</b>d</span></div>
+      <div id="field"><div id="cOver" class="over"><p id="cMsg">Tangkap sebanyak mungkin hati yang jatuh dalam 30 detik. Kumpulkan 10 hati untuk kejutan!</p><button class="btn" id="cStart">Mulai!</button></div></div>
+    </div>
+    <div class="panel" id="g1"><div class="card" id="quizBox"></div></div>
+    <div class="panel" id="g2">
+      <p class="hint">Pilih satu amplop, lalu buka pesannya 💌</p>
+      <div class="envs" id="envGrid"></div>
+      <div class="card envmsg" id="envMsg">Ketuk salah satu amplop ya…</div>
+    </div>
+  </div></section>
+
+  <section class="page" data-name="Surat"><div class="wrap center">
+    <h2>Ada surat buat kamu 💌</h2>
+    <p class="hint" id="sealHint">Ketuk segel hatinya untuk membuka</p>
+    <div class="lenv" id="lenv"><div class="lback"></div><div class="lflap"></div><div class="lfront"></div><button class="seal" id="seal" aria-label="Buka surat">💙</button></div>
+    <article class="paper" id="paper"><p class="hand">Untuk kamu, yang sedang bersinar 💙</p>
+      <p>Aku cuma mau bilang kalau aku bangga sama kamu. Mungkin buat sebagian orang ini cuma sebuah penampilan biasa, tapi aku tahu setiap usaha dan persiapan yang kamu lakukan punya cerita tersendiri.</p>
+      <p>Aku membayangkan latihan yang diulang-ulang, kaki yang pegal, napas yang ngos-ngosan, dan deg-degan sebelum naik ke panggung. Tapi kamu tetap datang, tetap mencoba, dan akhirnya berhasil melewati semuanya. Itu keren banget.</p>
+      <p>Terima kasih sudah berusaha sejauh ini. Jangan lupa untuk selalu menghargai diri sendiri, ya. Kamu sudah melakukan sesuatu yang hebat.</p>
+      <p>Semoga setelah hari ini ada lebih banyak hal indah yang bisa kamu capai. Dan kalau suatu saat kamu merasa kurang percaya diri, ingat bahwa ada seseorang yang percaya kalau kamu bisa melakukan banyak hal.</p>
+      <p>Apa pun hasilnya, hari ini kamu sudah menang karena berani mencoba. Peluk jauh dari aku 🤍</p>
+      <p class="sign">— Dari seseorang yang selalu bangga sama kamu</p></article>
+  </div></section>
+
+  <section class="page closing" data-name="Penutup"><canvas id="rain" aria-hidden="true"></canvas><div class="wrap center rel">
+    <canvas id="closingHeart" width="240" height="220" aria-hidden="true"></canvas>
+    <h2 class="f1">Terima kasih sudah membuka hadiah kecil ini.</h2>
+    <p class="f2">Selamat sekali lagi atas penampilan tari kamu di Hari Guru. Aku harap kamu selalu ingat kalau setiap usaha kamu itu berarti.</p>
+    <p class="f3 lead">Jangan berhenti bersinar, yaa. Kamu hebat dengan caramu sendiri. 💙</p>
+    <button class="btn big f4" id="replay">Putar lagi dari awal ↺</button>
+  </div></section>
+
+  <nav class="bottom"><button id="prev">← Kembali</button><div id="dots"></div><button id="next">Selanjutnya →</button></nav>
+  <div id="menu" hidden><div class="mbox"><h3>Menu utama</h3><div id="menuList"></div><button class="ghost" id="menuClose">Tutup</button></div></div>
+  <div id="lb" hidden><button id="lbClose" aria-label="Tutup">✕</button><button id="lbPrev" aria-label="Sebelumnya">‹</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button id="lbNext" aria-label="Berikutnya">›</button></div>
+  <div id="toast" role="status"></div>
+</main>
+<script src="./script.js"></script>
+</body>
+</html>

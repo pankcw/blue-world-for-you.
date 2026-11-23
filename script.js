@@ -71,7 +71,7 @@ const next=()=>{if(id!==wT)return;if(i>=WL.length){$('#wishSkip').hidden=true;re
 $('#wishSkip').onclick=()=>{wT++;$('#wishBox').innerHTML=WL.map(t=>`<p class="wl" style="animation:none;opacity:1">${t}</p>`).join('');$('#wishSkip').hidden=true};
 
 /* ===== GALERI ===== */
-const CAP=['Senyum kamu, favoritku✨','Cantiknya kebangetan🫶🏻','Tetap semangat latihan!','Kamu & bucket biru💙','Momen kecil yang berharga','Gaya andalan kamu😝','Tawa yang bikin cerah','Siap narii!','wanita kebanggaanku💃','Hari Guru yang spesial','Terus bersinar yaa🌟','Selalu ada di pikiranku🤍'],ROT=[-4,3,-2,4,-3,2,3,-4,2,-3,4,-2];
+const CAP=['Senyum kamu, favoritku✨','Cantiknya kebangetan🫶🏻','Tetap semangat latihan!','Kamu & buket biru💙','Momen kecil yang berharga','Gaya andalan kamu😝','Tawa yang bikin cerah','Siap narii!','wanita kebanggaanku💃','Hari Guru yang spesial','Terus bersinar yaa🌟','Selalu ada di pikiranku🤍'],ROT=[-4,3,-2,4,-3,2,3,-4,2,-3,4,-2];
 const src=i=>`./assets/images/foto${i+1}.jpg`;
 const ph=i=>'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bfe0ff"/><stop offset="1" stop-color="#e2d9ff"/></linearGradient></defs><rect width="800" height="1000" fill="url(#g)"/><text x="400" y="500" font-size="200" text-anchor="middle">💙</text><text x="400" y="640" font-size="48" text-anchor="middle" fill="#1f3b63" font-family="sans-serif">Foto ${i+1}</text></svg>`);
 const fb=(img,i)=>{img.onerror=()=>{img.onerror=null;img.src=ph(i)}};
